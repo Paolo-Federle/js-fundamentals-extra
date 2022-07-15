@@ -8,7 +8,11 @@
 //
 // TODO: write code below
 
-
+function secondInHours (hours) {
+  let second = hours*3600
+  return second
+}
+// console.log(secondInHours(3))
 
 // MilesTravelled
 //
@@ -23,7 +27,10 @@
 //
 // TODO: write code below
 
-
+function milesTravelled(mph, minute_duration) {
+  let distance_travelled = mph/60 * minute_duration
+  return Math.ceil(distance_travelled)
+}
 
 // KilometersToMiles
 //
@@ -37,7 +44,10 @@
 //
 // TODO: write code below
 
-
+function kmToMiles(km) {
+  let miles = Math.round(km /1.6)
+  return miles
+}
 
 // MakeSentence
 //
@@ -53,7 +63,14 @@
 //
 // TODO: write code below
 
-
+function makeSentence(sentence) {
+  if (sentence.charAt(sentence.length-1) === "." || sentence.charAt(sentence.length-1) === "!" || sentence.charAt(sentence.length-1) === "?") {
+    sentence = sentence.charAt(0).toUpperCase() + sentence.slice(1)
+    return sentence
+  }
+  sentence = sentence.charAt(0).toUpperCase() + sentence.slice(1) + "."
+  return sentence
+}
 
 // FileExtension
 //
@@ -67,7 +84,15 @@
 //
 // TODO: write code below
 
-
+function fileExtension(fileName) {
+  // for (i= 0; i < fileName.length; i++) {
+    console.log(fileName.charAt(fileName.length-4))
+    if (fileName.charAt(fileName.length-4) === ".") {
+      return fileExtension = fileName.slice(fileName.length-3)
+    }
+  // }
+  return fileExtension = ""
+}
 
 // Range
 //
@@ -80,7 +105,20 @@
 //
 // TODO: write code below
 
-
+function range (numArray) {
+  let highestNumber = numArray[0]
+  let lowestNumber = numArray[0]
+  for (i=0; i < numArray.length; i++) {
+    if (numArray[i] > highestNumber) {
+      highestNumber = numArray[i] 
+    }
+    if (numArray[i] < lowestNumber) {
+      lowestNumber = numArray[i] 
+    } 
+  }
+  biggestNumberGap = highestNumber - lowestNumber
+  return biggestNumberGap
+}
 
 // CheckTransactions
 //
@@ -99,7 +137,20 @@
 //
 // TODO: write code below
 
-
+function checkTransactions(listOfTransactions, accountStartingBalance, accountOverdraft) {
+  let canGoOnWithTransaction = true
+  let thisIsHowMuchYouCanSpend = accountStartingBalance + accountOverdraft
+  for (i=0; i<(listOfTransactions.length) && canGoOnWithTransaction === true; i++) {
+    if (listOfTransactions[i] >= 0) {
+      thisIsHowMuchYouCanSpend = thisIsHowMuchYouCanSpend + listOfTransactions[i]
+    } else if (listOfTransactions[i] < 0 && thisIsHowMuchYouCanSpend >= Math.abs(listOfTransactions[i])) {
+      thisIsHowMuchYouCanSpend = thisIsHowMuchYouCanSpend + listOfTransactions[i]
+    } else {
+      return canGoOnWithTransaction = false
+    }
+  }
+  return canGoOnWithTransaction
+}
 
 // FilmsInGenre
 //
@@ -114,31 +165,47 @@
 //
 // TODO: write code below
 
+function filmInGenre(movies, genre) {
+  const result = []
+  for ( let i = 0; i < movies.length; i++ ) {
+    const movie = movies[i]
+    if ( movie.genres.includes(genre) ) {
+        result.push(movie.name)
+    }
+}
+return result
+}
+
+
+
+
+
+
 
 
 // TODO: change undefined to be the name of the functions you defined
 module.exports = {
   //SecondsInHours
-  a: undefined,
+  a: secondInHours,
 
   //MilesTravelled,
-  b: undefined,  
+  b: milesTravelled,  
 
   //KilometersToMiles,
-  c: undefined, 
+  c: kmToMiles, 
 
   //MakeSentence
-  d: undefined, 
+  d: makeSentence, 
 
   //FileExtension
-  e: undefined,
+  e: fileExtension,
 
   //Range
-  f: undefined,
+  f: range,
 
   //CheckTransactions
-  g: undefined,
+  g: checkTransactions,
 
   //FilmsInGenre
-  h: undefined,
+  h: filmInGenre,
 }
